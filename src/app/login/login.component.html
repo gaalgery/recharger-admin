@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Log in</title>
+  <link rel="stylesheet" href="login.component.css">
+</head>
+
+<body>
+
+<div class="wrap" >
+
+<div class="split left">
+  <p class="textr">RechargR</p>
+</div>
+
+<div class="split mid">
+
+  <img src="../../assets/admin.png" height="245" width="201"/>
+
+  <h2>Admin</h2>
+
+  <form [formGroup]="loginForm" (keyup.enter)="login(email.value, password.value)">
+  <label for="email">Email: </label><br/>
+  <input class="input"  id="email" #email placeholder="example@recharger.com" type="email" required="required"/><br/><br/>
+
+  <label for="password">Password: </label><br/>
+  <input  class="input" id="password" #password placeholder="*****" type="password" required="required"/><br/>
+
+  <button type="button" mat-raised-button class="myButton" (click)="login(email.value, password.value)">Log in</button>
+  </form>
+
+</div>
+
+<div class="split right">
+
+  <img class="img" src="src=../../assets/plug.png">
+
+</div>
+
+</div>
+
+
+</body>
+</html>

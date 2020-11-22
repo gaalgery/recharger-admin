@@ -1,0 +1,18 @@
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #2fb519;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #dce1e5;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 2px;
+}
+
+
+section{
+  text-align: center;
+  font-family: "Century Gothic";
+}

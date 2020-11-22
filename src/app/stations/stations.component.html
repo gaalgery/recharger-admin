@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Stations</title>
+  <link rel="stylesheet" href="stations.component.css">
+</head>
+
+<body>
+
+
+<header>
+  <p id="logo" (click)="goToPage('options')">RechargR</p>
+  <button mat-raised-button id="logout" (click)="logout()">Log out</button>
+</header>
+
+<header id="menu">
+
+  <div id="back">
+    <a (click)="goToPage('options')">
+      <img matTooltip="Back" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../assets/back-w.png" height="50" width="50"/>
+    </a>
+  </div>
+
+  <header id="middle">
+
+    <div class="search">
+      <form [formGroup]="stationSearch">
+
+        <label id="margin" for="address">Address: </label>
+        <input formControlName="stationAddress" type="text" #address id="address" name="address" [defaultValue]="" placeholder="Big City">
+
+        <label for="state">State: </label>
+        <select formControlName="stationState" #state name="state" id="state" >
+          <option value=""></option>
+          <option value="Open">Open</option>
+          <option value="Closed">Closed</option>
+        </select>
+
+        <label for="phone">Phone: </label>
+        <input formControlName="stationPhone" type="text" #phone id="phone" name="phone" [defaultValue]="" placeholder="+36301234567">
+      </form>
+    </div>
+
+    <div>
+      <a class="button-search" (click)="refreshDataSource()"><img matTooltip="Search" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../assets/search-w.png" height="45" width="45"/></a>
+    </div>
+  </header>
+
+  <div id="addnew">
+    <a (click)="goToPage('add-station')" >
+      <img matTooltip="Add new station" matTooltipPosition="before" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../assets/add-station.png" height="65" width="65"/>
+    </a>
+  </div>
+
+</header>
+
+<section class="content">
+
+  <div class="mat-elevation-z8">
+
+  <mat-table [dataSource]="stationsData" matSort >
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>Address</mat-header-cell>
+      <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.address}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+      <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.phone}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+      <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.state}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <img matTooltip="Locate" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (click)="map(element.id)" class="image" alt="edit" src="../../assets/location-g.png" height="30" width="30"/>
+        <img matTooltip="Edit" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (click)="editStation(element.id)" class="image" alt="edit" src="../../assets/pencil-g.png" height="30" width="30"/>
+        <img matTooltip="Delete" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (dblclick)="deleteStation(element.id)" class="image" alt="delete" src="../../assets/trash-g.png" height="30" width="30"/>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[1, 2, 5, 10, 20]" [pageSize]="2" [length]="numberOfUsers" showFirstLastButtons></mat-paginator>
+
+  </div>
+
+</section>
+
+</body>
+
+</html>

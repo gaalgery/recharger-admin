@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Income</title>
+  <link rel="stylesheet" href="statistics-consumption.component.css">
+</head>
+
+<body>
+
+
+<header>
+  <p id="logo" (click)="goToPage('chargings')">RechargR</p>
+  <button mat-raised-button id="logout" (click)="logout()">Log out</button>
+</header>
+
+<header id="menu">
+
+  <div id="back">
+    <a (click)="goToPage('chargings')">
+      <img matTooltip="Back" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../assets/back-w.png" height="50" width="50"/>
+    </a>
+  </div>
+
+</header>
+
+
+<section class="content">
+
+  <ngx-charts-area-chart-stacked
+    [legend]="legend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxis]="xAxis"
+    [yAxis]="yAxis"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [timeline]="timeline"
+    [results]="consumption">
+  </ngx-charts-area-chart-stacked>
+
+</section>
+
+</body>
+
+</html>
+

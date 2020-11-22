@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Charger</title>
+  <link rel="stylesheet" href="dialog-editcharger.component.css">
+</head>
+<body>
+<h1 mat-dialog-title>Edit Charger</h1>
+<mat-dialog-content>
+  <label for="name">Address: </label><br>
+  <input type="text" #name id="name" name="name" value="{{charger.name}}" placeholder="Name" autofocus><br><br>
+
+  <label for="type">Type: </label><br>
+  <input type="text"  #type id="type" value="{{charger.type}}" name="type" placeholder="basic"><br><br>
+
+  <label for="price">Price: </label><br>
+  <input type="number"  #price id="price"  value="{{charger.price}}" name="price" placeholder="0"><br><br>
+
+  <button mat-raised-button (click)="Edit(name.value, type.value, price.valueAsNumber)" >Save changes</button>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close="{{updated}}">Close</button>
+</mat-dialog-actions>
+</body>
+</html>
+

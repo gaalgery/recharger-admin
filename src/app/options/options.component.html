@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Options</title>
+  <link rel="stylesheet" href="options.component.css">
+</head>
+
+<body>
+
+  <header>
+      <p id="logo">RechargR</p>
+      <button mat-raised-button id="logout" (click)="logout()">Log out</button>
+  </header>
+
+
+<section class="content">
+
+  <a class="column column-a" (click)="goToPage('users')">
+    <div class="option">
+      <div class="users-img"><img id="users" src="../../assets/users-b.png" height="200" width="200"/></div>
+      <h1>Users</h1>
+    </div>
+
+  </a>
+  <a class="column column-b" (click)="goToPage('stations')">
+    <div class="option">
+      <div class="chargers-img"><img id="chargers" src="../../assets/charger-b.png" height="200" width="200"/></div>
+      <h1>Charging stations</h1>
+    </div>
+
+  </a>
+  <a class="column column-c" (click)="goToPage('chargings')">
+    <div class="option">
+      <div class="list-img"><img id="list" src="../../assets/list-b.png" height="200" width="200"/></div>
+      <h1>List events</h1>
+    </div>
+
+  </a>
+
+</section>
+
+</body>
+
+</html>

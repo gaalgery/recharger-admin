@@ -1,0 +1,106 @@
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*{
+  font-family: "Century Gothic";
+}
+
+header{
+  width:100%;
+  height: 9vh;
+  background-color: #333333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+p#logo{
+
+  color: white;
+  margin-left: 2%;
+  font-size: 36px;
+  vertical-align: middle;
+  padding-top: 0px;
+}
+
+button#logout{
+  background: white;
+  border: white;
+  height: 40%;
+  width: 7%;
+  font-size: 20px;
+  margin-right: 2%;
+  font-weight: bold;
+  color: black;
+}
+
+button#logout:hover{
+  background: #4E9F25;
+  color: white;
+}
+
+.content {
+  position: relative;
+  min-height: 50%;
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.column-a {
+  background-color: white;
+  right: 66.66%;
+  left: 0;
+}
+
+.column-b {
+  background-color: #a5a1a1;
+  right: 33.33%;
+  left: 33.33%;
+}
+
+.column-c {
+  background-color: white;
+  right: 0;
+  left: 66.66%;
+}
+.column {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-height: 90vh;
+}
+
+.option{
+  text-align: center;
+  padding-top: 50%;
+}
+
+.column:hover{
+  background-color: #4E9F25;
+  color: white;
+}
+
+.column-a:hover img#users{
+  content: url("../../assets/users-w.png");
+}
+
+.column-b:hover img#chargers{
+  content: url("../../assets/charger-w.png");
+}
+
+.column-c:hover img#list{
+  content: url("../../assets/list-w.png");
+}
+

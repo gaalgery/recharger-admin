@@ -1,0 +1,87 @@
+.split{
+  float: left;
+  text-align: center;
+  border-collapse: collapse;
+}
+.mid{
+  width: 70%;
+  transform: translateY(10%);
+}
+
+.right{
+  width: 15%;
+  background-color: #333333;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.left{
+  width: 15%;
+  background-color: #4E9F25;
+  left: 0;
+
+}
+
+.wrap{
+  min-height: 100vh;
+  display: flex;
+}
+
+*{
+  font-family: "Century Gothic";
+}
+
+.textr{
+  text-align: center;
+  font-size: 400%;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%) rotate(270deg);
+}
+
+.myButton {
+  background:linear-gradient(to bottom, #333333 5%, #333333 100%);
+  background-color:#333333;
+  border:1px solid #333333;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-size:24px;
+  font-weight:bold;
+  padding:10px 40px;
+  text-decoration:none;
+  margin-top: 7%;
+}
+.myButton:hover {
+  background:linear-gradient(to bottom, #4E9F25 5%, #4E9F25 100%);
+  background-color:#4E9F25;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+
+label{
+  font-size: 24px;
+}
+
+h2{
+  font-size: 36px;
+}
+
+.input{
+  width: 30%;
+  height: 40px;
+}
+
+::placeholder{
+  font-size: 18px;
+}
+
+.img{
+  width: 200%;
+  height: auto;
+}
