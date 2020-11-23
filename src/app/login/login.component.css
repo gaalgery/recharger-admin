@@ -1,87 +1,89 @@
-.split{
-  float: left;
-  text-align: center;
-  border-collapse: collapse;
-}
-.mid{
-  width: 70%;
-  transform: translateY(10%);
+body {
+  font-family: "Century Gothic", serif;
 }
 
-.right{
-  width: 15%;
-  background-color: #333333;
-  right: 0;
+.main-head{
+  height: 150px;
+  background: #FFF;
+
+}
+
+.sidenav {
+  height: 100%;
+  background-color: #333;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+
+.main {
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+}
+
+@media screen and (max-width: 450px) {
+  .login-form{
+    margin-top: 10%;
+  }
+
+  .register-form{
+    margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .main{
+    margin-left: 40%;
+  }
+
+  .sidenav{
+    width: 40%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .login-form{
+    margin-top: 80%;
+  }
+
+}
+
+
+.login-main-text{
+  margin-top: 5%;
+  padding: 60px;
+  color: #fff;
+  background-color: #333;
+}
+
+.login-main-text h1{
+  font-size: 48px;
+}
+
+.login-main-text h2{
+  font-weight: 300;
+  font-size: 26px;
+  color: #4E9F25;
+}
+
+.btn-black{
+  background-color: #333 !important;
+  color: #fff;
+}
+
+.padlock{
   display: flex;
-  align-items: flex-end;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
-.left{
-  width: 15%;
-  background-color: #4E9F25;
-  left: 0;
-
+.padlock img{
+  margin-bottom: 0%;
 }
 
-.wrap{
-  min-height: 100vh;
-  display: flex;
-}
-
-*{
-  font-family: "Century Gothic";
-}
-
-.textr{
-  text-align: center;
-  font-size: 400%;
-  position: absolute;
-  margin: auto;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%) rotate(270deg);
-}
-
-.myButton {
-  background:linear-gradient(to bottom, #333333 5%, #333333 100%);
-  background-color:#333333;
-  border:1px solid #333333;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff;
-  font-size:24px;
-  font-weight:bold;
-  padding:10px 40px;
-  text-decoration:none;
-  margin-top: 7%;
-}
-.myButton:hover {
-  background:linear-gradient(to bottom, #4E9F25 5%, #4E9F25 100%);
-  background-color:#4E9F25;
-}
-.myButton:active {
-  position:relative;
-  top:1px;
-}
-
-label{
-  font-size: 24px;
-}
-
-h2{
-  font-size: 36px;
-}
-
-.input{
-  width: 30%;
-  height: 40px;
-}
-
-::placeholder{
-  font-size: 18px;
-}
-
-.img{
-  width: 200%;
-  height: auto;
-}
+.login-button:hover{ background-color: #4E9F25; border: 0px; }

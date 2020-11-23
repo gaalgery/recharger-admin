@@ -35,13 +35,13 @@ export class ChargingsService {
     return await this.http.get<[]>(this.path + '/statistics/consumption', {params}).toPromise();
   }
 
-  async getSelectedChargings(start: Date, end: Date, stationsSelected: string[]): Promise<any[]> {
-    // @ts-ignore
-    // const params = new HttpParams().set('start', start).set('end', end).set('stations', stations);
+  async getSelectedChargings(start: Date, end: Date, stationsSelected: string[], pageN: number, pageS: number): Promise<any> {
     return await this.http.post<any[]>( this.path + '/chargings/search', {
       startDate: start,
       endDate: end,
-      stations: stationsSelected
+      stations: stationsSelected,
+      pageNumber: pageN,
+      pageSize: pageS
     }).toPromise();
   }
 

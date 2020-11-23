@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
-import {FormControl} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {LogginginSnackbarComponent} from '../loggingin-snackbar/loggingin-snackbar.component';
+import {LoggingoutSnackbarComponent} from '../loggingout-snackbar/loggingout-snackbar.component';
 
 
 @Component({
@@ -12,18 +15,44 @@ import {FormControl} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = new FormControl();
+  loginForm = this.fb.group({
+    email: [''],
+    password: ['']
+  });
 
-  constructor(private router: Router, private  http: HttpClient, private mainService: AuthService) { }
-  response: any = null;
+  closed = true;
+  open = false;
+
+  constructor(private router: Router, private  http: HttpClient, private mainService: AuthService,
+              private fb: FormBuilder, private s: MatSnackBar) { }
+
+  async login(): Promise<void>{
+
+    await this.mainService.login(this.loginForm.value.email, this.loginForm.value.password).then(
+      async res => {
+        if (res){
+          this.closed = !this.closed;
+          await this.delay(2420);
+          this.open = true;
+          this.router.navigate([`options`]);
+        }
+      }
+    );
+  }
+
+  delay(ms: number): Promise<unknown>
+  {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   async ngOnInit(): Promise<void> {
       if (this.mainService.loggedIn() && await this.mainService.hasValidToken()) {
         this.router.navigate(['options']);
       }
   }
-  async login(authemail: string, authpassword: string): Promise<void>{
-    await this.mainService.login(authemail, authpassword);
+
+  p(): void{
+    this.s.openFromComponent(LoggingoutSnackbarComponent, {duration: 2000});
   }
 
 }

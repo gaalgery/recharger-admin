@@ -37,14 +37,19 @@ export class StationsComponent implements OnInit, AfterViewInit {
   }
 
   async refreshDataSource(): Promise<void> {
-    this.mainService.startUpdate();
+    if (!this.mainService.getUpdateStatus()) {
+      this.mainService.startUpdate();
 
-    await this.stationService.geSelectedStations(this.stationSearch.value.stationAddress,
-      this.stationSearch.value.stationState, this.stationSearch.value.stationPhone, this.paginator.pageIndex, this.paginator.pageSize).then(
-      res => { this.numberOfUsers = res.totalElements; this.stationsData.data = res.content; }
-    );
+      await this.stationService.geSelectedStations(this.stationSearch.value.stationAddress, this.stationSearch.value.stationState,
+        this.stationSearch.value.stationPhone, this.paginator.pageIndex, this.paginator.pageSize).then(
+        res => {
+          this.numberOfUsers = res.totalElements;
+          this.stationsData.data = res.content;
+        }
+      );
 
-    this.mainService.stopUpdate();
+      this.mainService.stopUpdate();
+    }
   }
 
   ngAfterViewInit(): void {

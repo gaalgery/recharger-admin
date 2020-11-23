@@ -31,6 +31,8 @@ import { StatisticsIncomeComponent } from './statistics-income/statistics-income
 import {DatePipe} from '@angular/common';
 import { StatisticsConsumptionComponent } from './statistics-consumption/statistics-consumption.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LogginginSnackbarComponent } from './loggingin-snackbar/loggingin-snackbar.component';
+import { LoggingoutSnackbarComponent } from './loggingout-snackbar/loggingout-snackbar.component';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     StatisticsUsageComponent,
     StatisticsIncomeComponent,
     StatisticsConsumptionComponent,
+    LogginginSnackbarComponent,
+    LoggingoutSnackbarComponent,
   ],
   entryComponents: [UpdatingSnackbarComponent, DialogNewchargerComponent, DialogEditchargerComponent],
   imports: [

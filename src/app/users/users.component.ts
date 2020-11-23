@@ -40,14 +40,19 @@ export class UsersComponent implements OnInit, AfterViewInit {
   }
 
  async refreshDataSource(): Promise<void> {
-    this.mainService.startUpdate();
+   if (!this.mainService.getUpdateStatus()) {
+     this.mainService.startUpdate();
 
-    await this.usersService.getSelectedUsers(this.userSearch.value.userName,
-      this.userSearch.value.userEmail, this.userSearch.value.userRole, this.paginator.pageIndex, this.paginator.pageSize).then(
-      res => { this.numberOfUsers = res.totalElements; this.usersData.data = res.content; }
-    );
+     await this.usersService.getSelectedUsers(this.userSearch.value.userName,
+       this.userSearch.value.userEmail, this.userSearch.value.userRole, this.paginator.pageIndex, this.paginator.pageSize).then(
+       res => {
+         this.numberOfUsers = res.totalElements;
+         this.usersData.data = res.content;
+       }
+     );
 
-    this.mainService.stopUpdate();
+     this.mainService.stopUpdate();
+   }
   }
 
   ngAfterViewInit(): void {

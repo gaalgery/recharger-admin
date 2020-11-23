@@ -56,7 +56,7 @@
 
     </div>
     <div>
-      <a class="button-search" (click)="search()"><img matTooltip="Search" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../assets/search-w.png" height="45" width="45"/></a>
+      <a class="button-search" (click)="refreshDataSource()"><img matTooltip="Search" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../assets/search-w.png" height="45" width="45"/></a>
     </div>
   </header>
 
@@ -73,8 +73,6 @@
 
 
 <section class="content">
-  <h1>{{range.value.start | date | json}}</h1>
-  <h1>{{stationsForm.value | json}}</h1>
 
   <div  class="mat-elevation-z8">
 
@@ -105,12 +103,19 @@
       <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="options">
-      <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
-      <mat-cell *matCellDef="let element">
+    <ng-container  matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef>User</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.userAccount.email}}</mat-cell>
+    </ng-container>
 
-        <img matTooltip="Delete" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (dblclick)="deleteCharging(element.id)" class="image" alt="delete" src="../../assets/trash-g.png" height="30" width="30"/>
-      </mat-cell>
+    <ng-container  matColumnDef="station">
+      <mat-header-cell *matHeaderCellDef>Station</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.chargingHead.station.address}}</mat-cell>
+    </ng-container>
+
+    <ng-container  matColumnDef="chargingHead">
+      <mat-header-cell *matHeaderCellDef>ChargingHead</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.chargingHead.name}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

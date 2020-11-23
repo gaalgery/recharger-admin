@@ -22,12 +22,14 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  async login(authemail: string, authpassword: string): Promise<void>{
+  async login(authemail: string, authpassword: string): Promise<boolean>{
     this.startUpdate();
+    let authorized = false;
     await this.http.post<any>(  this.path + '/adminlogin/', {email: authemail, password: authpassword}).toPromise().then(res => {
       localStorage.setItem('token', res.token);
-      this.router.navigate([`options`]);
+      authorized = true;
     });
+    return authorized;
     this.stopUpdate();
   }
 

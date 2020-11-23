@@ -38,7 +38,7 @@ export class ChargingsComponent implements OnInit, AfterViewInit {
 
 
   // itt majd meg kell kiiratni adatot
-  displayedColumns: string[] = ['id', 'consumption', 'price', 'begin', 'end'];
+  displayedColumns: string[] = ['id', 'consumption', 'price', 'begin', 'end', 'user', 'station', 'chargingHead'];
 
   constructor(private router: Router, private chargingsService: ChargingsService, public datepipe: DatePipe,
               private mainService: AuthService, private stationService: StationsService) { }
@@ -47,14 +47,26 @@ export class ChargingsComponent implements OnInit, AfterViewInit {
     this.chargingsData = new MatTableDataSource(this.Chargings);
     this.chargingsData.paginator = this.paginator;
     await this.getStations();
+    this.refreshDataSource();
   }
 
   refreshDataSource(): void {
-    this.mainService.startUpdate();
-    this.chargingsService.getChargingsPage(this.paginator.pageIndex, this.paginator.pageSize).then(
-      res => { this.numberOfChargings = res.totalElements; this.chargingsData.data = res.content; }
-    );
-    this.mainService.stopUpdate();
+    if (!this.mainService.getUpdateStatus()) {
+      this.mainService.startUpdate();
+
+      const stationsList = this.stationsForm.value == null ? [] : this.stationsForm.value;
+      const startRange = this.range.value.start == null ? new Date(2000, 0, 1) : this.range.value.start;
+      const endRange = this.range.value.end == null ? new Date() : this.range.value.end;
+
+      this.chargingsService.getSelectedChargings(startRange, endRange,
+        stationsList, this.paginator.pageIndex, this.paginator.pageSize).then(
+        res => {
+          this.numberOfChargings = res.totalElements;
+          this.chargingsData.data = res.content;
+        }
+      );
+      this.mainService.stopUpdate();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -95,7 +107,7 @@ export class ChargingsComponent implements OnInit, AfterViewInit {
   async getStations(): Promise<void>{
     this.mainService.startUpdate();
     await this.stationService.getStations()
-      .then(res => {  this.stations = res;  console.log(res); });
+      .then(res => {  this.stations = res; });
     this.mainService.stopUpdate();
   }
 
@@ -106,15 +118,6 @@ export class ChargingsComponent implements OnInit, AfterViewInit {
       this.mainService.stopUpdate();
       this.refreshDataSource();
     }
-  }
-
-  async search(): Promise<void>{
-
-    const start = this.datepipe.transform(this.range.value.start, 'shortDate');
-    const end = this.datepipe.transform(this.range.value.end, 'shortDate');
-    this.chargingsService.getSelectedChargings(this.range.value.start, this.range.value.end, this.stationsForm.value).then(
-      res => { console.log(res); }
-    );
   }
 
   logout(): void{
