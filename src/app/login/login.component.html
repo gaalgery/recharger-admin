@@ -25,30 +25,39 @@
 
   <div class="col-md-6 col-sm-12">
 
-    <div class="login-form">
-
+    <div class="card border-dark mb-3">
+      <div class="m-4">
       <div class="padlock">
-        <img *ngIf="!closed && !open" src="../../assets/padlock-opening.gif" height="100" width="100"/>
-        <img *ngIf="open" src="../../assets/padlock-open.gif" height="100" width="100"/>
-        <img *ngIf="closed" src="../../assets/padlock-closed.gif" height="100" width="100"/>
+        <img *ngIf="!closed && !open" src="../../assets/padlock-opening.gif" height="120" width="120"/>
+        <img *ngIf="open" src="../../assets/padlock-open.gif" height="120" width="120"/>
+        <img *ngIf="closed" src="../../assets/padlock-closed.gif" height="120" width="120"/>
       </div>
 
-      <form [formGroup]="loginForm" (keyup.enter)="login()">
+      <form [formGroup]="loginForm">
 
-        <div class="form-group">
+        <div class="form-group pb-1">
           <label>Email</label>
-          <input formControlName="email" type="text" class="form-control" placeholder="Email" autofocus>
+          <input [class.is-invalid]="loginForm.get('email').invalid && loginForm.get('email').touched" formControlName="email" type="text" class="form-control" placeholder="Email" autofocus>
+          <div *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+            <small *ngIf="loginForm.get('email').errors?.required" class="text-danger">Email required</small>
+            <small *ngIf="loginForm.get('email').errors?.email" class="text-danger">Enter a valid email address</small>
+          </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group pb-1">
           <label>Password</label>
-          <input formControlName="password" type="password" class="form-control" placeholder="Password">
+          <input [class.is-invalid]="loginForm.get('password').invalid && loginForm.get('password').touched" formControlName="password" type="password" class="form-control" placeholder="Password">
+          <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+            <small *ngIf="loginForm.get('password').errors?.required" class="text-danger">Password required</small>
+          </div>
         </div>
 
-        <button mat-raised-button class="login-button" type="button" (click)="login()">Login</button>
+        <div class="submit">
+          <button [disabled]="!loginForm.valid"  class="btn mr-2 btn-success pl-3 pr-3 p-2" (click)="login()">Login</button>
+        </div>
 
       </form>
-
+      </div>
     </div>
   </div>
 </div>

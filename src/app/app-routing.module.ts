@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from './login/login.component';
 import {OptionsComponent} from './options/options.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UsersComponent } from './users/users.component';
-import { StationsComponent } from './stations/stations.component';
-import { AddUserComponent } from './add-user/add-user.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
-import { AuthGuard } from './services/auth.guard';
-import { MapComponent } from './map/map.component';
-import { AddStationComponent } from './add-station/add-station.component';
-import { EditStationComponent } from './edit-station/edit-station.component';
-import {StationChargersComponent} from './station-chargers/station-chargers.component';
-import {ChargingsComponent} from './chargings/chargings.component';
-import { StatisticsUsageComponent } from './statistics-usage/statistics-usage.component';
-import { StatisticsIncomeComponent } from './statistics-income/statistics-income.component';
-import {StatisticsConsumptionComponent} from './statistics-consumption/statistics-consumption.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {UsersComponent} from './User/users/users.component';
+import {StationsComponent} from './Station/stations/stations.component';
+import {AddUserComponent} from './User/add-user/add-user.component';
+import {EditUserComponent} from './User/edit-user/edit-user.component';
+import {AuthGuard} from './services/auth.guard';
+import {MapComponent} from './Station/map/map.component';
+import {AddStationComponent} from './Station/add-station/add-station.component';
+import {EditStationComponent} from './Station/edit-station/edit-station.component';
+import {StationChargersComponent} from './Station/station-chargers/station-chargers.component';
+import {ChargingsComponent} from './Charging/chargings/chargings.component';
+import {StatisticsUsageComponent} from './Charging/statistics-usage/statistics-usage.component';
+import {StatisticsIncomeComponent} from './Charging/statistics-income/statistics-income.component';
+import {StatisticsConsumptionComponent} from './Charging/statistics-consumption/statistics-consumption.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Stations</title>
+  <link rel="stylesheet" href="stations.component.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+
+
+<header>
+  <p id="logo" (click)="goToPage('options')">RechargR</p>
+  <h1 id="title">Stations</h1>
+  <button mat-raised-button id="logout" (click)="logout()">Log out</button>
+</header>
+
+<header id="menu">
+
+  <div id="back">
+    <a (click)="goToPage('options')">
+      <img matTooltip="Back" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../../assets/back-w.png" height="50" width="50"/>
+    </a>
+  </div>
+
+  <header id="middle">
+
+    <div class="search">
+      <form [formGroup]="stationSearch">
+        <label for="name" >Address: </label>
+        <input formControlName="address" class="form-control ml-2" type="text" id="name" name="name" [defaultValue]="" placeholder="Big City">
+
+        <label for="email" class="ml-3">Phone: </label>
+        <input formControlName="phone" class="form-control ml-2" type="text"  id="email" name="email" [defaultValue]="" placeholder="+36301234567">
+
+        <label class="form-select-label ml-3" for="auth">State: </label>
+        <select class="custom-select ml-2" formControlName="state" name="auth" id="auth" >
+          <option value=""></option>
+          <option value="Open">Open</option>
+          <option value="Closed">Closed</option>
+          <option value="Under construction">Under construction</option>
+          <option value="Out of order">Out of order</option>
+        </select>
+
+        <a class="button-search ml-4" (click)="refreshDataSource()"><img matTooltip="Search" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../../assets/search-w.png" height="45" width="45"/></a>
+
+      </form>
+    </div>
+  </header>
+
+  <div id="addnew">
+    <a (click)="goToPage('add-station')" >
+      <img matTooltip="Add new station" matTooltipPosition="before" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../../assets/add-station.png" height="65" width="65"/>
+    </a>
+  </div>
+
+</header>
+
+<section class="content">
+
+  <div class="mat-elevation-z8">
+
+  <mat-table [dataSource]="stationsData" matSort >
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>Address</mat-header-cell>
+      <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.address}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+      <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.phone}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+      <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.state}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <img matTooltip="Locate" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (click)="map(element.id)" class="image" alt="edit" src="../../../assets/location-g.png" height="30" width="30"/>
+        <img matTooltip="Edit" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (click)="editStation(element.id)" class="image" alt="edit" src="../../../assets/pencil-g.png" height="30" width="30"/>
+        <img matTooltip="Delete" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (dblclick)="deleteStation(element.id)" class="image" alt="delete" src="../../../assets/trash-g.png" height="30" width="30"/>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[1, 2, 5, 10, 20]" [pageSize]="10" [length]="numberOfUsers" showFirstLastButtons></mat-paginator>
+
+  </div>
+
+</section>
+
+</body>
+
+</html>

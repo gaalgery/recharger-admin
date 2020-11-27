@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Stations</title>
+  <link rel="stylesheet" href="station-chargers.component.css">
+</head>
+
+<body>
+
+
+<header>
+  <p id="logo" (click)="goToPage('options')">RechargR</p>
+  <h1 id="title">Chargingheads of station #{{id}}</h1>
+  <button mat-raised-button id="logout" (click)="logout()">Log out</button>
+</header>
+
+<header id="menu">
+
+  <div id="back">
+    <a (click)="goToPage('stations')">
+      <img matTooltip="Back" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../../assets/back-w.png" height="50" width="50"/>
+    </a>
+  </div>
+
+
+  <div id="addnew">
+    <a (click)="addNewCharger()" >
+      <img matTooltip="Add new charger" matTooltipPosition="before" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../../assets/add-plug.png" height="65" width="65"/>
+    </a>
+  </div>
+
+</header>
+
+<section class="content">
+
+  <mat-table [dataSource]="chargers" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>Price</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.price}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.type}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <img matTooltip="Edit" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (click)="editCharger(element)" class="image" alt="edit" src="../../../assets/pencil-g.png" height="30" width="30"/>
+        <img matTooltip="Delete" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (dblclick)="deleteChager(element.id)" class="image" alt="delete" src="../../../assets/trash-g.png" height="30" width="30"/>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</section>
+
+</body>
+
+</html>

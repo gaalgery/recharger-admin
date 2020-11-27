@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add New Charger</title>
+  <link rel="stylesheet" href="dialog-newcharger.component.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+<h1 mat-dialog-title>Add new Charger</h1>
+<mat-dialog-content >
+
+  <form [formGroup]="chargingHeadForm" class=" form pb-1 pl-4 pr-4" (keyup.enter)="Add()">
+
+    <div class="form-group pb-1">
+      <label>Name: </label> <br>
+      <input [class.is-invalid]="chargingHeadForm.get('name').invalid && chargingHeadForm.get('name').touched" formControlName="name" type="text" class="form-control" placeholder="Name" autofocus>
+      <div *ngIf="chargingHeadForm.get('name').invalid && chargingHeadForm.get('name').touched">
+        <small *ngIf="chargingHeadForm.get('name').errors?.required" class="text-danger">Name required</small>
+      </div>
+    </div>
+
+    <div class="form-group pb-1">
+      <label>Type: </label> <br>
+      <input [class.is-invalid]="chargingHeadForm.get('type').invalid && chargingHeadForm.get('type').touched" formControlName="type" type="text" class="form-control" placeholder="Type">
+      <div *ngIf="chargingHeadForm.get('type').invalid && chargingHeadForm.get('type').touched">
+        <small *ngIf="chargingHeadForm.get('type').errors?.required" class="text-danger">Type required</small>
+      </div>
+    </div>
+
+    <div class="form-group pb-1">
+      <label>Price: </label> <br>
+      <input [class.is-invalid]="chargingHeadForm.get('price').invalid && chargingHeadForm.get('price').touched" formControlName="price" type="number" class="form-control">
+      <div *ngIf="chargingHeadForm.get('price').invalid && chargingHeadForm.get('price').touched">
+        <small *ngIf="chargingHeadForm.get('price').errors?.required" class="text-danger">Price required</small>
+      </div>
+    </div>
+
+  </form>
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div>
+  <button [disabled]="!chargingHeadForm.valid" class="btn mr-2 mb-3 btn-outline-success" type="number" (click)="Add()">Save charger</button>
+  <button class="btn btn-outline-danger mb-3" mat-dialog-close="{{updated}}">Close</button>
+  </div>
+</mat-dialog-actions>
+</body>
+</html>

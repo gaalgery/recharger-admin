@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Users</title>
+  <link rel="stylesheet" href="users.component.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+
+
+<header>
+  <p id="logo" (click)="goToPage('options')">RechargR</p>
+  <h1 id="title">User accounts</h1>
+  <button mat-raised-button id="logout" (click)="logout()">Log out</button>
+</header>
+
+<header id="menu">
+
+  <div id="back">
+    <a (click)="goToPage('options')">
+      <img matTooltip="Back" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../../assets/back-w.png" height="50" width="50"/>
+    </a>
+  </div>
+
+  <header id="middle">
+
+    <div class="search">
+
+      <form [formGroup]="userSearch">
+        <label for="name">Name: </label>
+        <input formControlName="name" class="form-control ml-2" type="text" id="name" name="name" [defaultValue]="" placeholder="Mr. Example">
+
+        <label for="email" class="ml-3">Email: </label>
+        <input formControlName="email" class="form-control ml-2" type="text"  id="email" name="email" [defaultValue]="" placeholder="mr.example@example.com">
+
+        <label class="form-select-label ml-3" for="auth">Role: </label>
+        <select class="custom-select ml-2" formControlName="admin" name="auth" id="auth" >
+          <option value=""></option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select>
+
+        <a class="button-search ml-4" (click)="refreshDataSource()"><img matTooltip="Search" matTooltipPosition="after" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../../assets/search-w.png" height="45" width="45"/></a>
+
+      </form>
+
+    </div>
+  </header>
+
+  <div id="addnew">
+    <a (click)="goToPage('add-user')" >
+      <img id="add" matTooltip="Add new user" matTooltipPosition="before" matTooltipShowDelay="500" matTooltipHideDelay="500" src="../../assets/adduser-w.png" height="75" width="75"/>
+    </a>
+  </div>
+
+</header>
+
+
+<section class="content">
+
+  <div  class="mat-elevation-z16 table">
+
+  <mat-table [dataSource]="usersData" >
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="balance">
+      <mat-header-cell *matHeaderCellDef>Balance</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.balance}}</mat-cell>
+    </ng-container>
+
+    <ng-container  matColumnDef="admin">
+      <mat-header-cell *matHeaderCellDef>Admin</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.admin}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <img matTooltip="Edit" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (click)="editUser(element.id)" class="image" alt="edit" src="../../../assets/pencil-g.png" height="30" width="30"/>
+        <img matTooltip="Delete" matTooltipPosition="below" matTooltipShowDelay="500" matTooltipHideDelay="500" (dblclick)="deleteUser(element.id)" class="image" alt="delete" src="../../../assets/trash-g.png" height="30" width="30"/>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[1, 2, 5, 10, 20]" [pageSize]="10" [length]="numberOfUsers" showFirstLastButtons></mat-paginator>
+  </div>
+
+</section>
+
+</body>
+
+</html>

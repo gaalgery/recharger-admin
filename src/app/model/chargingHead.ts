@@ -1,5 +1,3 @@
-import {Station} from './station';
-
 export class ChargingHead {
 
   constructor(id: number, stationID: number, price: number, type: string, name: string ) {

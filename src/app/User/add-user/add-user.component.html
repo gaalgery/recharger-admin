@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Add New User</title>
+  <link rel="stylesheet" href="add-user.component.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+
+<header>
+  <p id="logo" (click)="goToPage('options')">RechargR</p>
+  <h1 id="title">Create a new account</h1>
+  <button mat-raised-button id="logout" (click)="logout()">Log out</button>
+</header>
+
+
+<section class="content">
+
+    <div id="form">
+      <div class="card p-3">
+        <div class="user-img-header">
+          <img src="../../../assets/newuser-g.png"  height="100" width="100"/>
+        </div>
+        <form class="pb-1 pl-4 pr-4 " [formGroup]="userForm" (ngSubmit)="addNewUser()" (keyup.enter)="addNewUser()">
+
+          <div class="form-group pb-1">
+            <label>Name</label>
+            <input [class.is-invalid]="userForm.get('name').invalid && userForm.get('name').touched" formControlName="name" type="text" class="form-control" placeholder="Name" autofocus>
+            <div *ngIf="userForm.get('name').invalid && userForm.get('name').touched">
+              <small *ngIf="userForm.get('name').errors?.required" class="text-danger">Name required</small>
+            </div>
+          </div>
+
+          <div class="form-group pb-1">
+            <label>Email</label>
+            <input [class.is-invalid]="userForm.get('email').invalid && userForm.get('email').touched" formControlName="email" type="text" class="form-control" placeholder="Email">
+            <div *ngIf="userForm.get('email').invalid && userForm.get('email').touched">
+              <small *ngIf="userForm.get('email').errors?.required" class="text-danger">Email required</small>
+              <small *ngIf="userForm.get('email').errors?.email" class="text-danger">Enter a valid email address</small>
+            </div>
+          </div>
+
+          <div class="form-group pb-1">
+            <label>Password</label>
+            <input [class.is-invalid]="userForm.get('password').invalid && userForm.get('password').touched" formControlName="password" type="password" class="form-control" placeholder="Password">
+            <div *ngIf="userForm.get('password').invalid && userForm.get('password').touched">
+              <small *ngIf="userForm.get('password').errors?.required" class="text-danger">Password required</small>
+            </div>
+          </div>
+
+          <div class="form-group pb-1">
+            <label>Balance</label>
+            <input formControlName="balance" type="number" class="form-control" [defaultValue]="0" placeholder="0">
+          </div>
+
+          <div class="form-group pb-1 form-check">
+            <input formControlName="admin" type="checkbox" class="form-check-input form-check" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Admin authorization</label>
+          </div>
+
+          <button [disabled]="!userForm.valid"  class="btn mr-2 btn-outline-success" type="number" (click)="addNewUser()">Add new user</button>
+          <button class="btn btn-outline-danger" type="button" (click)="goToPage('users')">Dismiss</button>
+        </form>
+
+      </div>
+    </div>
+
+</section>
+
+</body>
+
+</html>

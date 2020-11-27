@@ -1,6 +1,7 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import {NotificationService} from '../services/notification.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-options',
@@ -9,14 +10,16 @@ import { AuthService } from '../services/auth.service';
 })
 export class OptionsComponent {
 
-  constructor(private router: Router, private mainService: AuthService) { }
+  constructor(private router: Router, private notifyService: NotificationService, private authService: AuthService) { }
 
   goToPage(pageName: string): void{
     this.router.navigate([`${pageName}`]);
   }
 
   logout(): void{
-    this.mainService.logout();
+    if (!this.notifyService.getUpdateStatus()) {
+      this.authService.logout().then(() => {}, error => { this.notifyService.errorHandler(error); });
+    }
   }
 }
 

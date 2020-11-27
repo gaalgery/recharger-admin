@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Add New Station</title>
+  <link rel="stylesheet" href="add-station.component.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+
+<header>
+  <p id="logo" (click)="goToPage('options')">RechargR</p>
+  <h1 id="title">Create a new station</h1>
+  <button mat-raised-button id="logout" (click)="logout()">Log out</button>
+</header>
+
+
+<section class="content">
+
+  <div id="form">
+    <div class="card p-3">
+      <div class="user-img-header">
+        <img src="../../../assets/new-location.png"  height="100" width="100"/>
+      </div>
+      <form class="pb-1 pl-4 pr-4 " [formGroup]="stationForm" (ngSubmit)="addNewStation()" (keyup.enter)="addNewStation()">
+
+        <div class="form-group pb-1">
+          <label>Address</label>
+          <input [class.is-invalid]="stationForm.get('address').invalid && stationForm.get('address').touched" formControlName="address" type="text" class="form-control" placeholder="Address" autofocus>
+          <div *ngIf="stationForm.get('address').invalid && stationForm.get('address').touched">
+            <small *ngIf="stationForm.get('address').errors?.required" class="text-danger">Address required</small>
+          </div>
+        </div>
+
+        <div class="form-group pb-1">
+          <label>CoordinateLon</label>
+          <input [class.is-invalid]="stationForm.get('coordinatelon').invalid && stationForm.get('coordinatelon').touched" formControlName="coordinatelon" type="number" class="form-control" step="0.0001" [defaultValue]="0">
+          <div *ngIf="stationForm.get('coordinatelon').invalid && stationForm.get('coordinatelon').touched">
+            <small *ngIf="stationForm.get('coordinatelon').errors?.required" class="text-danger">CoordinateLon required</small>
+          </div>
+        </div>
+
+        <div class="form-group pb-1">
+          <label>CoordinateLat</label>
+          <input [class.is-invalid]="stationForm.get('coordinatelat').invalid && stationForm.get('coordinatelat').touched" formControlName="coordinatelat" type="number" class="form-control" step="0.0001" [defaultValue]="0">
+          <div *ngIf="stationForm.get('coordinatelat').invalid && stationForm.get('coordinatelat').touched">
+            <small *ngIf="stationForm.get('coordinatelat').errors?.required" class="text-danger">CoordinateLat required</small>
+          </div>
+        </div>
+
+        <div class="form-group pb-1">
+          <label>Phone</label>
+          <input [class.is-invalid]="stationForm.get('phone').invalid && stationForm.get('phone').touched" formControlName="phone" type="text" class="form-control" placeholder="+36301234567">
+          <div *ngIf="stationForm.get('phone').invalid && stationForm.get('phone').touched">
+            <small *ngIf="stationForm.get('phone').errors?.required" class="text-danger">PhoneNumber required</small>
+          </div>
+        </div>
+
+        <div class="form-group pb-1">
+          <label class="form-select-label" for="state">State</label>
+          <select  id="state" class="custom-select" formControlName="state">
+            <option value="Open">Open</option>
+            <option value="Closed">Closed</option>
+            <option value="Under construction">Under construction</option>
+            <option value="Out of order">Out of order</option>
+          </select>
+        </div>
+
+        <button [disabled]="!stationForm.valid"  class="btn mr-2 btn-outline-success" type="number" (click)="addNewStation()">Add new station</button>
+        <button class="btn btn-outline-danger" type="button" (click)="goToPage('stations')">Dismiss</button>
+      </form>
+
+    </div>
+  </div>
+
+</section>
+
+</body>
+
+</html>

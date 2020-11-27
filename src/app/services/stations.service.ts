@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Station } from '../model/station';
+import {Injectable} from '@angular/core';
+import {Station} from '../model/station';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { ChargingHead } from '../model/chargingHead';
+import {ChargingHead} from '../model/chargingHead';
 
 @Injectable({
   providedIn: 'root'

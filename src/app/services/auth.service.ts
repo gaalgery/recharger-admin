@@ -1,18 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { UpdatingSnackbarComponent } from '../updating-snackbar/updating-snackbar.component';
+import {NotificationService} from './notification.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  updating = false;
+
   path = 'https://rechargr.herokuapp.com';
 
-  constructor(private http: HttpClient, private router: Router, private snackbar: MatSnackBar) { }
+  constructor(private http: HttpClient, private router: Router, private notify: NotificationService) { }
 
   loggedIn(): boolean {
     return !!localStorage.getItem('token');
@@ -23,44 +22,34 @@ export class AuthService {
   }
 
   async login(authemail: string, authpassword: string): Promise<boolean>{
-    this.startUpdate();
+
     let authorized = false;
-    await this.http.post<any>(  this.path + '/adminlogin/', {email: authemail, password: authpassword}).toPromise().then(res => {
+    await this.http.post<any>(  this.path + '/adminlogin/', {email: authemail, password: authpassword}).toPromise().then(
+      res => {
       localStorage.setItem('token', res.token);
       authorized = true;
-    });
+      },
+      async error => {
+        this.notify.errorHandler(error);
+      }
+    );
     return authorized;
-    this.stopUpdate();
   }
 
   async logout(): Promise<void>{
-    this.startUpdate();
-
+    this.notify.startLogout();
     await this.http.post<any>( this.path + '/logout', { token: this.getToken() }).toPromise();
     localStorage.removeItem('token');
-    this.router.navigate([`login`]);
-    this.stopUpdate();
-  }
-
-  startUpdate(): void{
-    this.updating = true;
-    this.snackbar.openFromComponent(UpdatingSnackbarComponent);
-  }
-
-  stopUpdate(): void{
-    this.updating = false;
-    this.snackbar.dismiss();
-  }
-
-  getUpdateStatus(): boolean {
-    return this.updating;
+    await this.router.navigate([`login`]);
+    this.notify.stopLogout();
   }
 
   async hasValidToken(): Promise<boolean> {
-    this.startUpdate();
+    this.notify.startUpdate();
     let valid = false;
     await this.http.post<any>(  this.path + '/auth', {token: this.getToken()} ).toPromise().then( res => valid = res.authed );
-    this.stopUpdate();
+    this.notify.stopUpdate();
     return valid;
   }
 }
+
