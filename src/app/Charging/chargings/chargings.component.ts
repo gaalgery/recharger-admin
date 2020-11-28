@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {Charging} from '../../model/charging';
 import {ChargingsService} from '../../services/chargings.service';
 import {NotificationService} from '../../services/notification.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {Station} from '../../model/station';
 import {StationsService} from '../../services/stations.service';
 import {DatePipe} from '@angular/common';

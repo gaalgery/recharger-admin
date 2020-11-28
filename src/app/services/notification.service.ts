@@ -8,6 +8,7 @@ import {LoggingoutSnackbarComponent} from '../snackbars/loggingout-snackbar/logg
 import {TokenExpiredSnackbarComponent} from '../snackbars/token-expired-snackbar/token-expired-snackbar.component';
 import {LoginFailedSnackbarComponent} from '../snackbars/login-failed-snackbar/login-failed-snackbar.component';
 import {CustomSnackbarComponent} from '../snackbars/custom-snackbar/custom-snackbar.component';
+import {EmailErrorSnackbarComponent} from '../snackbars/email-error-snackbar/email-error-snackbar.component';
 
 
 @Injectable({
@@ -75,6 +76,10 @@ export class NotificationService {
     this.snackbar.openFromComponent(CustomSnackbarComponent, {data: error.status, duration: 3000});
   }
 
+  emailError(error: any): void{
+    this.snackbar.openFromComponent(EmailErrorSnackbarComponent, {data: error.error.message, duration: 3000});
+  }
+
   fullCustom(text: string): void{
     this.snackbar.open(text, 'Dismiss', {duration: 2500});
   }
@@ -86,6 +91,9 @@ export class NotificationService {
     if (error instanceof HttpErrorResponse){
       if (error.status === 401) {
         this.LoginFailed();
+      }
+      else if (error.status === 425) {
+        this.emailError(error);
       }
       else {
         this.unpredictedError(error);

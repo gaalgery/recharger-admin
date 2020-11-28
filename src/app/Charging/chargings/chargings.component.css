@@ -197,3 +197,7 @@ h1#title{
 mat-datepicker-toggle {
   color: white !important;
 }
+
+.mat-form-field{
+   padding-top: 1.34375em;
+}

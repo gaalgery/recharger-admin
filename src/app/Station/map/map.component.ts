@@ -14,7 +14,7 @@ export class MapComponent implements OnInit {
 
   constructor(private stationService: StationsService, private router: Router,
               private notifyService: NotificationService, private authService: AuthService, private active: ActivatedRoute)
-  { this.zoom = 8; this.stations.push(new Station(0, '', 0, 0, 'Open', '+36301234567')); }
+  { this.zoom = 12; this.stations.push(new Station(0, '', 0, 0, 'Open', '+36301234567')); }
 
   public id;
   public zoom = 8;
@@ -46,7 +46,7 @@ export class MapComponent implements OnInit {
     await this.stationService.getStations()
       .then(res => {  this.stations = res;  },
         error => { this.notifyService.errorHandler(error); });
-    this.zoom = 4;
+    this.zoom = 8;
     this.notifyService.stopUpdate();
   }
 

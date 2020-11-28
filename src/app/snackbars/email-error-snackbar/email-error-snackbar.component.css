@@ -1,7 +1,7 @@
-
-
-span{
-  color: #4E9F25;
+.spinner {
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
 }
 
 section{
@@ -9,14 +9,12 @@ section{
   font-family: "Century Gothic";
 }
 
-h2{
-  color: #bc1919;
+img{
+  margin-bottom: 10%;
 }
 
-.spinner {
-  margin: 100px auto 0;
-  width: 70px;
-  text-align: center;
+h2{
+  color: #bc1919;
 }
 
 .spinner > div {
