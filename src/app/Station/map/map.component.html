@@ -32,8 +32,8 @@
 </header>
 
 <section class="content">
-  <agm-map [zoom]="zoom" [latitude]="stations[0].coordinateLon" [longitude]="stations[0].coordinateLat">
-    <agm-marker *ngFor="let station of stations" [latitude]="station.coordinateLon" [longitude]="station.coordinateLat"
+  <agm-map [zoom]="zoom" [latitude]="stations[0].coordinateLat" [longitude]="stations[0].coordinateLon">
+    <agm-marker *ngFor="let station of stations" [latitude]="station.coordinateLat" [longitude]="station.coordinateLon"
                 (markerClick)="clickedMarker(infoWindow)">
       <agm-info-window [disableAutoPan]="false" #infoWindow>
         <div class="marker">

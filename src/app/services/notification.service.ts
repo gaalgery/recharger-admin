@@ -9,6 +9,7 @@ import {TokenExpiredSnackbarComponent} from '../snackbars/token-expired-snackbar
 import {LoginFailedSnackbarComponent} from '../snackbars/login-failed-snackbar/login-failed-snackbar.component';
 import {CustomSnackbarComponent} from '../snackbars/custom-snackbar/custom-snackbar.component';
 import {EmailErrorSnackbarComponent} from '../snackbars/email-error-snackbar/email-error-snackbar.component';
+import {UnathorizedAccessSnackbarComponent} from '../snackbars/unathorized-access-snackbar/unathorized-access-snackbar.component';
 
 
 @Injectable({
@@ -23,8 +24,6 @@ export class NotificationService {
   path = 'https://rechargr.herokuapp.com';
 
   constructor(private http: HttpClient, private router: Router, private snackbar: MatSnackBar) { }
-
-
 
   startUpdate(): void{
     this.updating = true;
@@ -80,6 +79,10 @@ export class NotificationService {
     this.snackbar.openFromComponent(EmailErrorSnackbarComponent, {data: error.error.message, duration: 3000});
   }
 
+  unathorizedError(): void{
+    this.snackbar.openFromComponent(UnathorizedAccessSnackbarComponent, {duration: 3000});
+  }
+
   fullCustom(text: string): void{
     this.snackbar.open(text, 'Dismiss', {duration: 2500});
   }
@@ -89,8 +92,13 @@ export class NotificationService {
     this.stopUpdate();
 
     if (error instanceof HttpErrorResponse){
-      if (error.status === 401) {
+      if (error.status === 401 && this.router.url.toString() === '/login') {
         this.LoginFailed();
+      }
+      else if (error.status === 401) {
+        localStorage.removeItem('token');
+        this.router.navigate([`login`]);
+        this.unathorizedError();
       }
       else if (error.status === 425) {
         this.emailError(error);

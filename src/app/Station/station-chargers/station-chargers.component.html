@@ -35,15 +35,15 @@
 
 <section class="content">
 
-  <mat-table [dataSource]="chargers" matSort class="mat-elevation-z8">
+  <mat-table [dataSource]="chargers" class="mat-elevation-z8">
 
     <ng-container matColumnDef="id">
-      <mat-header-cell mat-sort-header *matHeaderCellDef>ID</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <mat-header-cell mat-sort-header *matHeaderCellDef>Price</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.price}}</mat-cell>
     </ng-container>
 

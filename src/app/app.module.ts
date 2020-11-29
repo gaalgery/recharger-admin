@@ -37,6 +37,7 @@ import {TokenExpiredSnackbarComponent} from './snackbars/token-expired-snackbar/
 import {LoginFailedSnackbarComponent} from './snackbars/login-failed-snackbar/login-failed-snackbar.component';
 import {CustomSnackbarComponent} from './snackbars/custom-snackbar/custom-snackbar.component';
 import {EmailErrorSnackbarComponent} from './snackbars/email-error-snackbar/email-error-snackbar.component';
+import { UnathorizedAccessSnackbarComponent } from './snackbars/unathorized-access-snackbar/unathorized-access-snackbar.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import {EmailErrorSnackbarComponent} from './snackbars/email-error-snackbar/emai
     LoginFailedSnackbarComponent,
     CustomSnackbarComponent,
     EmailErrorSnackbarComponent,
+    UnathorizedAccessSnackbarComponent,
   ],
   entryComponents: [UpdatingSnackbarComponent, DialogNewchargerComponent, DialogEditchargerComponent],
   imports: [

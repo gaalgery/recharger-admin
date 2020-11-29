@@ -135,8 +135,12 @@ label#margin{
   hyphens: auto;
 }
 
-.mat-column-id, .mat-column-options, .mat-column-admin {
-  flex: 0 0 8% !important;
+.mat-column-id {
+  flex: 0 0 4% !important;
+}
+
+.mat-column-chargingHead {
+  flex: 0 0 10% !important;
 }
 
 /deep/ .mat-tooltip{
@@ -200,4 +204,8 @@ mat-datepicker-toggle {
 
 .mat-form-field{
    padding-top: 1.34375em;
+}
+
+.mat-cell{
+  height: 70px;
 }

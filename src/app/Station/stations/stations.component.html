@@ -64,15 +64,15 @@
 
   <div class="mat-elevation-z8">
 
-  <mat-table [dataSource]="stationsData" matSort >
+  <mat-table [dataSource]="stationsData" >
 
     <ng-container matColumnDef="id">
-      <mat-header-cell mat-sort-header *matHeaderCellDef>ID</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
       <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.id}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="address">
-      <mat-header-cell mat-sort-header *matHeaderCellDef>Address</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
       <mat-cell (click)="showChargers(element.id)" *matCellDef="let element">{{element.address}}</mat-cell>
     </ng-container>
 
