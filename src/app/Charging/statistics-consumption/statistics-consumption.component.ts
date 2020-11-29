@@ -53,10 +53,9 @@ export class StatisticsConsumptionComponent implements OnInit {
     this.endDate = new Date(this.endDate);
     this.endDate.setDate(this.endDate.getDate() + 1);
 
-    console.log(new Date(this.endDate).getDate());
     await this.chargingsService.getConsumption(new Date(this.startDate), this.endDate,
       this.stations == null ? [] : this.stations)
-      .then(res => {  this.consumption = res; console.log(res); this.formatToDate(); },
+      .then(res => {  this.consumption = res; this.formatToDate(); },
           error => { this.notifyService.errorHandler(error); });
 
     this.notifyService.stopUpdate();
@@ -65,7 +64,6 @@ export class StatisticsConsumptionComponent implements OnInit {
   formatToDate(): void{
     for (const station of this.consumption){
       for (const ch of station.series){
-        console.log(ch.name);
         ch.name = new Date(ch.name);
       }
     }
