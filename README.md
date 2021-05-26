@@ -1,3 +1,13 @@
+# Recharger
+
+A projekt a Témalaboratórium c. tárgy keretében készült. 
+
+Maga a projekt teljes Fullstack változata készült el és egy olyan elektromos töltőállomás kereső alkalmazást valósít meg, ami az aktuális helyzetünk alapján listázza a közelben lévő állomásokat.
+
+# Célja
+
+Jelen alkalmazás célja a töltőállomás kereső projekthez egy adminisztrációs oldal megvalósítása, ahol könnyen kezelhetőek az egyes felhasználók és töltők. Ezen kívűl térképen megnézhetőek az állomások elhelyezkedése és gazdasági statisztikákat kérhetünk le a vásárlásokkal kapcsolatban, ezek diagramokon is megtekinthetőek.
+
 # AdminFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
