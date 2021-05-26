@@ -1,6 +1,8 @@
 import {Injectable, Injector} from '@angular/core';
-import {HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {AuthService} from './auth.service';
+import {catchError, retry} from 'rxjs/operators';
+import {throwError} from 'rxjs';
 
 
 @Injectable({

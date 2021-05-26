@@ -1,11 +1,9 @@
 {
   "name": "admin-frontend",
   "version": "0.0.0",
-  "license": "MIT",
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -13,8 +11,6 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "~10.1.7",
-    "@angular/compiler-cli": "~10.1.6",
     "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "~10.1.6",
     "@angular/cdk": "^10.2.7",
@@ -27,12 +23,9 @@
     "@angular/platform-browser-dynamic": "~10.1.6",
     "@angular/router": "~10.1.6",
     "@swimlane/ngx-charts": "^16.0.0",
-    "express": "^4.17.1",
-    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
-    "typescript": "~4.0.2"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1002.0",
@@ -54,9 +47,5 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"
-  },
-  "engines": {
-    "node": "12.18.4",
-    "npm": "6.14.6"
   }
 }
